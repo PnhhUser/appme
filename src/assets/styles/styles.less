@@ -1,0 +1,54 @@
+/* Custom css app */
+@import 'ng-zorro-antd/ng-zorro-antd.less';
+@import './font.less';
+
+@layout-body-background: var(--bg-app);
+
+
+// dropdown avatar
+.ant-dropdown-menu.dropdownAvatar {
+  min-width: 140px;
+
+  .menu-item {
+    display: flex;
+
+    .ant-dropdown-menu-item {
+      width: 100%;
+      
+      .name {
+        margin-left: 10px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+
+// sidebar menu
+.sidebar.ant-menu {
+  .ant-menu-submenu-open > .ant-menu-submenu-title {
+    background-color: white;
+  }
+
+  .ant-menu-sub {
+    background-color: white;
+  }
+
+}
+
+
+
+:root {
+  --bg-app: #ffffff;
+  --bg-header: #ffffff;
+  --bg-sider: #ffffff;
+  --bg-avatar: @blue-base;
+
+  --border-clr: #e3e3e3;
+
+}
+
+
+body {
+  font-family: "Inter", sans-serif;
+}

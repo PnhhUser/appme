@@ -1,0 +1,75 @@
+<form nz-form nzLayout="vertical" [formGroup]="formAdd" class="modern-form">
+  <!-- Product name -->
+  <nz-form-item>
+    <nz-form-label nzRequired>Product name</nz-form-label>
+    <nz-form-control nzErrorTip="Bắt buộc nhập">
+      <input
+        nz-input
+        nzSize="large"
+        formControlName="productName"
+        placeholder="Nhập tên sản phẩm"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Quantity -->
+  <nz-form-item>
+    <nz-form-label nzRequired>Quantity</nz-form-label>
+    <nz-form-control nzErrorTip="Số lượng phải > 0">
+      <nz-input-number
+        nzSize="large"
+        formControlName="quantity"
+        [nzMin]="1"
+        [nzStep]="1"
+        style="width: 100%"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Price -->
+  <nz-form-item>
+    <nz-form-label nzRequired>Price</nz-form-label>
+    <nz-form-control nzErrorTip="Giá tối thiểu 1.000">
+      <nz-input-number
+        nzSize="large"
+        formControlName="price"
+        [nzMin]="1000"
+        [nzStep]="1000"
+        style="width: 100%"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Category -->
+  <nz-form-item>
+    <nz-form-label nzRequired>Category</nz-form-label>
+    <nz-form-control nzErrorTip="Vui lòng chọn category">
+      <nz-select
+        nzSize="large"
+        formControlName="categoryId"
+        nzPlaceHolder="Chọn category"
+      >
+        <nz-option
+          *ngFor="let c of categories"
+          [nzValue]="c.id"
+          [nzLabel]="c.name"
+        />
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Actions -->
+  <div class="form-actions">
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      [disabled]="formAdd.invalid"
+      (click)="save()"
+    >
+      Lưu
+    </button>
+
+    <button nz-button nzSize="large" (click)="close()">Hủy</button>
+  </div>
+</form>

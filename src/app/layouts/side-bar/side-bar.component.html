@@ -1,0 +1,18 @@
+<ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed()" class="sidebar">
+  <!-- Dashboard -->
+  <li nz-menu-item routerLink="/dashboard" [nzMatchRouter]="true">
+    <nz-icon nzType="appstore" />
+    <span>Dashboard</span>
+  </li>
+
+  <!-- Data -->
+  <li nz-submenu nzTitle="Data" nzIcon="database" [nzOpen]="true">
+    <ul>
+      <!-- Product -->
+      <li nz-menu-item routerLink="/product" [nzMatchRouter]="true">
+        <nz-icon nzType="product" />
+        <span>Product</span>
+      </li>
+    </ul>
+  </li>
+</ul>

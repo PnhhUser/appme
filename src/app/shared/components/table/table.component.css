@@ -1,0 +1,48 @@
+/* table.component.css */
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.sort-button {
+  padding: 0;
+  height: 24px;
+  width: 24px;
+  min-width: 24px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #d9d9d9;
+  transition: all 0.3s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sort-button:hover {
+  color: #1890ff;
+  background-color: rgba(24, 144, 255, 0.1);
+}
+
+.sort-icon {
+  font-size: 12px;
+  transition: all 0.3s;
+}
+
+/* Màu cho icon đang active */
+.sort-button:has(.sort-icon) {
+  color: #bfbfbf;
+}
+
+.sort-button:hover .sort-icon {
+  color: #1890ff;
+}
+
+/* Highlight icon khi đang sort */
+th:has(.sort-button):hover {
+  background-color: rgba(250, 250, 250, 0.8);
+}

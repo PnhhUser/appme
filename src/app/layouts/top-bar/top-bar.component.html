@@ -1,0 +1,33 @@
+<div class="topBar">
+  <div class="topBar-item"></div>
+  <div class="topBar-item">
+    <!-- Button collaped -->
+    <div class="item-btn-collaped">
+      <button nz-button nzType="primary" (click)="toggleCollapsed()">
+        <nz-icon [nzType]="isCollapsed() ? 'menu-unfold' : 'menu-fold'" />
+      </button>
+    </div>
+    <!-- Avatar -->
+    <div class="item-avatar">
+      <nz-avatar
+        [nzText]="firstLetterName"
+        [nzSize]="28"
+        nzShape="square"
+        nz-dropdown
+        [nzDropdownMenu]="avatar"
+        nzPlacement="bottomRight"
+      ></nz-avatar>
+      <!-- Dropdown of avatar -->
+      <nz-dropdown-menu #avatar="nzDropdownMenu">
+        <ul nz-menu class="dropdownAvatar">
+          <li class="menu-item">
+            <a nz-menu-item>
+              <nz-icon nzType="logout" nzTheme="outline" />
+              <span class="name">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</div>

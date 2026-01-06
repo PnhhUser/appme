@@ -1,0 +1,11 @@
+<div class="product-table-feature">
+  <button nz-button nzType="primary" (click)="openDrawer()">Add product</button>
+</div>
+
+<app-shared-table
+  [cols]="columns"
+  [rows]="data"
+  [config]="tableConfig"
+  (rowClick)="onRowClick($event)"
+  (sortChange)="onSortChange($event)"
+></app-shared-table>

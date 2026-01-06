@@ -1,0 +1,9 @@
+.modern-form {
+  max-width: 520px;
+}
+
+.form-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+}

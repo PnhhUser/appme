@@ -1,0 +1,13 @@
+<nz-layout>
+  <nz-header>
+    <app-top-bar />
+  </nz-header>
+  <nz-layout>
+    <nz-sider [nzWidth]="isCollapsed() ? '60px' : '260px'">
+      <app-side-bar />
+    </nz-sider>
+    <nz-content>
+      <router-outlet />
+    </nz-content>
+  </nz-layout>
+</nz-layout>
