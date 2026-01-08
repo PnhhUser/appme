@@ -1,4 +1,4 @@
-<form nz-form nzLayout="vertical" [formGroup]="formAdd" class="modern-form">
+<form nz-form nzLayout="vertical" [formGroup]="formEdit" class="modern-form">
   <!-- Product name -->
   <nz-form-item>
     <nz-form-label [nzSpan]="5">Product name</nz-form-label>
@@ -64,10 +64,10 @@
     <button
       nz-button
       nzType="primary"
-      [disabled]="formAdd.invalid"
+      [disabled]="formEdit.invalid"
       (click)="save()"
     >
-      Save
+      Update
     </button>
 
     <button nz-button (click)="close()">Close</button>

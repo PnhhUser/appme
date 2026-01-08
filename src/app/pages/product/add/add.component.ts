@@ -26,7 +26,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzInputModule,
   ],
   templateUrl: './add.component.html',
-  styleUrl: './add.component.css',
+  styleUrl: './add.component.less',
 })
 export class AddComponent {
   formAdd!: FormGroup;

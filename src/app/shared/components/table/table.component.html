@@ -1,112 +1,103 @@
 <!-- table.component.html -->
 
-<nz-spin [nzSpinning]="tableConfig.loading" [nzDelay]="300">
-  <nz-table
-    #table
-    [nzData]="displayData"
-    [nzLoading]="false"
-    [nzPageSize]="tableConfig.pageSize!"
-    [nzPageSizeOptions]="tableConfig.pageSizeOptions!"
-    [nzShowPagination]="tableConfig.showPagination"
-    [nzShowSizeChanger]="tableConfig.showSizeChanger"
-    [nzShowQuickJumper]="tableConfig.showQuickJumper"
-    [nzBordered]="tableConfig.bordered"
-    [nzScroll]="tableConfig.scroll!"
-    [nzFrontPagination]="true"
-    (nzPageIndexChange)="onPageChange($event)"
-    (nzPageSizeChange)="onPageSizeChange($event)"
-  >
-    <!-- Phần còn lại giữ nguyên -->
-    <thead>
-      <tr>
-        @for(col of cols; track col.key) {
-        <th [nzWidth]="getColumnWidth(col)" [nzAlign]="getColumnAlign(col)">
-          <div class="table-header">
-            <span>{{ col.title }}</span>
+<nz-table
+  #table
+  [nzData]="displayData"
+  [nzLoading]="tableConfig.loading"
+  [nzPageSize]="tableConfig.pageSize!"
+  [nzPageSizeOptions]="tableConfig.pageSizeOptions!"
+  [nzShowPagination]="tableConfig.showPagination"
+  [nzShowSizeChanger]="tableConfig.showSizeChanger"
+  [nzShowQuickJumper]="tableConfig.showQuickJumper"
+  [nzBordered]="tableConfig.bordered"
+  [nzScroll]="tableConfig.scroll!"
+  [nzFrontPagination]="true"
+  (nzPageIndexChange)="onPageChange($event)"
+  (nzPageSizeChange)="onPageSizeChange($event)"
+>
+  <!-- Phần còn lại giữ nguyên -->
+  <thead>
+    <tr>
+      @for(col of cols; track col.key) {
+      <th [nzWidth]="getColumnWidth(col)" [nzAlign]="getColumnAlign(col)">
+        <div class="table-header">
+          <span>{{ col.title }}</span>
 
-            @if(isSortable(col.key)) {
-            <button
-              nz-button
-              nzType="text"
-              nzSize="small"
-              (click)="onSort(col.key); $event.stopPropagation()"
-              class="sort-button"
-            >
-              <!-- Hiển thị icon đúng theo trạng thái -->
-              @if(sortState[col.key] === 'ascend') {
-              <nz-icon nzType="caret-up" nzTheme="outline" class="sort-icon" />
-              } @else if(sortState[col.key] === 'descend') {
-              <nz-icon
-                nzType="caret-down"
-                nzTheme="outline"
-                class="sort-icon"
-              />
-              } @else {
-              <!-- Icon mặc định khi chưa sort -->
-              <nz-icon
-                nzType="sort-ascending"
-                nzTheme="outline"
-                class="sort-icon"
-              />
-              }
-            </button>
+          @if(isSortable(col.key)) {
+          <button
+            nz-button
+            nzType="text"
+            nzSize="small"
+            (click)="onSort(col.key); $event.stopPropagation()"
+            class="sort-button"
+          >
+            <!-- Hiển thị icon đúng theo trạng thái -->
+            @if(sortState[col.key] === 'ascend') {
+            <nz-icon nzType="caret-up" nzTheme="outline" class="sort-icon" />
+            } @else if(sortState[col.key] === 'descend') {
+            <nz-icon nzType="caret-down" nzTheme="outline" class="sort-icon" />
+            } @else {
+            <!-- Icon mặc định khi chưa sort -->
+            <nz-icon
+              nzType="sort-ascending"
+              nzTheme="outline"
+              class="sort-icon"
+            />
             }
-          </div>
-        </th>
-        } @if(rowActionsTemplate) {
-        <th nzWidth="100px" nzAlign="center">Thao tác</th>
-        }
-      </tr>
-    </thead>
-
-    <tbody>
-      @for(row of table.data; track row[tableConfig.rowKey!] || $index) {
-      <tr (click)="onRowClick(row)" class="table-row">
-        @for(col of cols; track col.key) {
-        <td
-          [nzAlign]="getColumnAlign(col)"
-          [class.clickable]="rowClick.observed"
-        >
-          <!-- Custom Template -->
-          @if(hasCustomTemplate(col.key)) {
-          <ng-container
-            *ngTemplateOutlet="
-              customCellTemplates[col.key];
-              context: { $implicit: row }
-            "
-          >
-          </ng-container>
+          </button>
           }
-
-          <!-- Built-in Templates -->
-          @else if(col.template === 'status') {
-          <nz-tag
-            [nzColor]="
-              getCellValue(row, col.key) === 'active' ? 'success' : 'error'
-            "
-            >{{
-              getCellValue(row, col.key) === "active"
-                ? "Hoạt động"
-                : "Không hoạt động"
-            }}</nz-tag
-          >
-          }
-
-          <!-- Default Display -->
-          @else {
-          {{ formatValue(getCellValue(row, col.key), col) }}
-          }
-        </td>
-        } @if(rowActionsTemplate) {
-        <td nzAlign="center">
-          <ng-container
-            *ngTemplateOutlet="rowActionsTemplate; context: { $implicit: row }"
-          >
-          </ng-container>
-        </td>
-        }
-      </tr>
+        </div>
+      </th>
+      } @if(rowActionsTemplate) {
+      <th nzWidth="100px" nzAlign="center">Thao tác</th>
       }
-    </tbody>
-  </nz-table>
-</nz-spin>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for(row of table.data; track row[tableConfig.rowKey!] || $index) {
+    <tr (click)="onRowClick(row)" class="table-row">
+      @for(col of cols; track col.key) {
+      <td [nzAlign]="getColumnAlign(col)" [class.clickable]="rowClick.observed">
+        <!-- Custom Template -->
+        @if(hasCustomTemplate(col.key)) {
+        <ng-container
+          *ngTemplateOutlet="
+            customCellTemplates[col.key];
+            context: { $implicit: row }
+          "
+        >
+        </ng-container>
+        }
+
+        <!-- Built-in Templates -->
+        @else if(col.template === 'status') {
+        <nz-tag
+          [nzColor]="
+            getCellValue(row, col.key) === 'active' ? 'success' : 'error'
+          "
+          >{{
+            getCellValue(row, col.key) === "active"
+              ? "Hoạt động"
+              : "Không hoạt động"
+          }}</nz-tag
+        >
+        }
+
+        <!-- Default Display -->
+        @else {
+        {{ formatValue(getCellValue(row, col.key), col) }}
+        }
+      </td>
+      } @if(rowActionsTemplate) {
+      <td nzAlign="center">
+        <ng-container
+          *ngTemplateOutlet="rowActionsTemplate; context: { $implicit: row }"
+        >
+        </ng-container>
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</nz-table>

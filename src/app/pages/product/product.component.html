@@ -9,3 +9,7 @@
   (rowClick)="onRowClick($event)"
   (sortChange)="onSortChange($event)"
 ></app-shared-table>
+
+<ng-template #drawerExtraTpl>
+  <button nz-button nzDanger (click)="deleteCurrent()">Delete product</button>
+</ng-template>

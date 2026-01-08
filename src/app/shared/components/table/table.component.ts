@@ -15,7 +15,6 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { FormsModule } from '@angular/forms';
 import { IColumn, ITableConfig } from './table.model';
 
@@ -30,7 +29,6 @@ import { IColumn, ITableConfig } from './table.model';
     NzToolTipModule,
     FormsModule,
     NzTagModule,
-    NzSpinModule,
   ],
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],

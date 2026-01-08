@@ -1,5 +1,5 @@
 import { selectProductLoading } from './../../stores/selectors/product.selector';
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IProduct } from './product.interface';
 import { SharedTableComponent } from '../../shared/components/table/table.component';
@@ -7,19 +7,41 @@ import { Store } from '@ngrx/store';
 import * as ProductAction from '../../stores/actions/product.action';
 import { selectProducts } from '../../stores/selectors/product.selector';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzDrawerModule, NzDrawerService } from 'ng-zorro-antd/drawer';
+import {
+  NzDrawerModule,
+  NzDrawerRef,
+  NzDrawerService,
+} from 'ng-zorro-antd/drawer';
 import { AddComponent as FormAddProduct } from './add/add.component';
 import { IColumn } from '../../shared/components/table/table.model';
+import { EditComponent as FormEditProduct } from './edit/edit.component';
+import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, SharedTableComponent, NzButtonModule, NzDrawerModule],
+  imports: [
+    CommonModule,
+    SharedTableComponent,
+    NzButtonModule,
+    NzDrawerModule,
+    NzModalModule,
+  ],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.less'],
 })
 export class ProductComponent {
-  constructor(private store: Store, private drawerService: NzDrawerService) {}
+  @ViewChild('drawerExtraTpl', { static: true })
+  drawerExtraTpl!: TemplateRef<{}>;
+
+  private drawerRef?: NzDrawerRef;
+  private currentRow?: IProduct;
+
+  constructor(
+    private store: Store,
+    private drawerService: NzDrawerService,
+    private modal: NzModalService
+  ) {}
 
   columns: IColumn[] = [
     { key: 'Name', title: 'Product name', sortable: true },
@@ -49,8 +71,28 @@ export class ProductComponent {
     loading: false,
   };
 
-  onRowClick(row: any): void {
-    console.log('Row clicked:', row);
+  drawerConfig = {
+    width: 520,
+    nzClosable: false,
+  };
+
+  onRowClick(row: IProduct): void {
+    this.currentRow = row;
+
+    this.drawerRef = this.drawerService.create({
+      nzTitle: 'Preview detail',
+      nzContent: FormEditProduct,
+      nzWidth: this.drawerConfig.width,
+      nzClosable: this.drawerConfig.nzClosable,
+      nzData: row,
+      nzExtra: this.drawerExtraTpl,
+    });
+
+    this.drawerRef.afterClose.subscribe((result) => {
+      if (result?.action === 'delete') {
+        console.log('Deleted → reload table');
+      }
+    });
   }
 
   onSortChange(event: { key: string; value: string }): void {
@@ -59,17 +101,39 @@ export class ProductComponent {
   }
 
   openDrawer() {
-    const drawerRef = this.drawerService.create({
-      nzTitle: 'Add product',
+    const drawer = this.drawerService.create({
+      nzTitle: 'New product',
       nzContent: FormAddProduct,
-      nzWidth: 520,
-      nzClosable: false,
+      nzWidth: this.drawerConfig.width,
+      nzClosable: this.drawerConfig.nzClosable,
     });
 
-    drawerRef.afterClose.subscribe((result) => {
+    drawer.afterClose.subscribe((result) => {
       if (result) {
         console.log('Reload data', result);
       }
+    });
+  }
+
+  deleteCurrent(): void {
+    if (!this.currentRow) return;
+
+    this.modal.confirm({
+      nzTitle: 'Xác nhận xóa',
+      nzContent: `Bạn có chắc muốn xóa sản phẩm <b>${this.currentRow.Name}</b>?`,
+      nzOkText: 'Xóa',
+      nzOkDanger: true,
+      nzCancelText: 'Hủy',
+      nzOnOk: () => {
+        // 🔥 dispatch delete
+        console.log('xóa');
+
+        // 🔥 đóng drawer
+        this.drawerRef?.close({
+          action: 'delete',
+          id: this.currentRow!.Id,
+        });
+      },
     });
   }
 }
