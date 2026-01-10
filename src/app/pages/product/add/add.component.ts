@@ -12,6 +12,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { Store } from '@ngrx/store';
+import * as ProductTypeAction from '../../../stores/actions/product-type.action';
+import { selectProductTypes } from '../../../stores/selectors/product-type.selector';
+import { IProductType } from '../../product-type/product-type.interface';
 
 @Component({
   selector: 'app-add',
@@ -31,21 +35,28 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 export class AddComponent {
   formAdd!: FormGroup;
 
-  categories = [
-    { id: 1, name: 'Laptop' },
-    { id: 2, name: 'Phone' },
-    { id: 3, name: 'Accessory' },
-  ];
+  productTypes: IProductType[] = [];
 
   constructor(
     private drawerRef: NzDrawerRef<boolean>,
-    private fb: NonNullableFormBuilder
-  ) {
+    private fb: NonNullableFormBuilder,
+    private store: Store
+  ) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(ProductTypeAction.loadProductType());
+
+    this.store.select(selectProductTypes).subscribe((data) => {
+      this.productTypes = data;
+    });
+
+    const productTypeIds = this.productTypes.map((pt) => pt.Id);
+
     this.formAdd = this.fb.group({
       productName: ['', Validators.required],
       quantity: [0, [Validators.required, Validators.min(1)]],
       price: [0, [Validators.required, Validators.min(1000)]],
-      categoryId: [null as number | null, Validators.required],
+      categoryId: [productTypeIds, Validators.required],
     });
   }
 

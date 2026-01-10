@@ -14,8 +14,9 @@ import {
 } from 'ng-zorro-antd/drawer';
 import { AddComponent as FormAddProduct } from './add/add.component';
 import { IColumn } from '../../shared/components/table/table.model';
-import { EditComponent as FormEditProduct } from './edit/edit.component';
+import { PreviewDetailComponent as PreviewDetailProduct } from './preview-detail/preview-detail.component';
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
+import { FilterTableComponent } from '../../shared/components/filter-table/filter-table.component';
 
 @Component({
   selector: 'app-product',
@@ -26,6 +27,7 @@ import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
     NzButtonModule,
     NzDrawerModule,
     NzModalModule,
+    FilterTableComponent,
   ],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.less'],
@@ -37,6 +39,9 @@ export class ProductComponent {
   private drawerRef?: NzDrawerRef;
   private currentRow?: IProduct;
 
+  filteredData: IProduct[] = [];
+  filterKeyword: string = '';
+
   constructor(
     private store: Store,
     private drawerService: NzDrawerService,
@@ -44,10 +49,10 @@ export class ProductComponent {
   ) {}
 
   columns: IColumn[] = [
-    { key: 'Name', title: 'Product name', sortable: true },
-    { key: 'Category', title: 'Category', sortable: false },
-    { key: 'Price', title: 'Price', sortable: false },
-    { key: 'Quantity', title: 'Quantity', sortable: false },
+    { key: 'Name', title: 'Tên sản phẩm', sortable: true },
+    { key: 'Category', title: 'Loại sản phẩm', sortable: false },
+    { key: 'Price', title: 'Giá bán', sortable: true },
+    { key: 'Quantity', title: 'Số lượng', sortable: true },
   ];
 
   data: IProduct[] = [];
@@ -57,6 +62,7 @@ export class ProductComponent {
 
     this.store.select(selectProducts).subscribe((data) => {
       this.data = data;
+      this.filteredData = data;
     });
 
     this.store.select(selectProductLoading).subscribe((isLoad) => {
@@ -80,8 +86,8 @@ export class ProductComponent {
     this.currentRow = row;
 
     this.drawerRef = this.drawerService.create({
-      nzTitle: 'Preview detail',
-      nzContent: FormEditProduct,
+      nzTitle: 'Chi tiết sản phẩm',
+      nzContent: PreviewDetailProduct,
       nzWidth: this.drawerConfig.width,
       nzClosable: this.drawerConfig.nzClosable,
       nzData: row,
@@ -102,7 +108,7 @@ export class ProductComponent {
 
   openDrawer() {
     const drawer = this.drawerService.create({
-      nzTitle: 'New product',
+      nzTitle: 'Thểm mới sản phẩm',
       nzContent: FormAddProduct,
       nzWidth: this.drawerConfig.width,
       nzClosable: this.drawerConfig.nzClosable,
@@ -135,5 +141,20 @@ export class ProductComponent {
         });
       },
     });
+  }
+
+  onFilterChange(keyword: string): void {
+    this.filterKeyword = keyword.toLowerCase().trim();
+
+    if (!this.filterKeyword) {
+      this.filteredData = [...this.data];
+      return;
+    }
+
+    this.filteredData = this.data.filter((item) =>
+      Object.values(item).some((value) =>
+        String(value).toLowerCase().includes(this.filterKeyword)
+      )
+    );
   }
 }

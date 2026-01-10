@@ -1,0 +1,57 @@
+<form nz-form nzLayout="vertical" [formGroup]="formPreview" class="modern-form">
+  <!-- Product name -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="8">Tên loại sản phẩm</nz-form-label>
+    <nz-form-control nzErrorTip="Tên loại sản phẩm không được để trống">
+      <input
+        nz-input
+        nzSize="large"
+        formControlName="productNameType"
+        placeholder="Nhập tên loại sản phẩm"
+        style="height: 38px"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- DateTime create -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5">Ngày tạo</nz-form-label>
+    <nz-form-control>
+      <nz-date-picker
+        nzDisabled
+        formControlName="createdAt"
+        nzShowTime
+        nzFormat="dd/MM/yyyy HH:mm"
+        style="width: 100%; height: 38px"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- DateTime update -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="5">Ngày cập nhật</nz-form-label>
+    <nz-form-control>
+      <nz-date-picker
+        nzDisabled
+        formControlName="updatedAt"
+        nzShowTime
+        nzFormat="dd/MM/yyyy HH:mm"
+        style="width: 100%; height: 38px"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Actions -->
+  <div class="form-actions">
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="formPreview.invalid"
+      (click)="save()"
+    >
+      Chỉnh sửa
+    </button>
+
+    <button nz-button (click)="close()">Đóng</button>
+  </div>
+</form>

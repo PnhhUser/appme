@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "Id": 1,
+      "Name": "Toys",
+      "CreatedAt": "2023-01-01T00:00:00Z",
+      "UpdatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+      "Id": 2,
+      "Name": "Books",
+      "CreatedAt": "2023-01-01T00:00:00Z",
+      "UpdatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+      "Id": 3,
+      "Name": "clothes",
+      "CreatedAt": "2023-01-01T00:00:00Z",
+      "UpdatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+      "Id": 4,
+      "Name": "Electronics",
+      "CreatedAt": "2023-01-01T00:00:00Z",
+      "UpdatedAt": "2023-01-01T00:00:00Z"
+    }
+  ],
+  "error": null
+}

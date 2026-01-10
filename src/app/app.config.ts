@@ -16,6 +16,10 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { productReducer } from './stores/reducers/product.reducer';
 import { ProductEffect } from './stores/effects/product.effect';
+import { ProductTypeEffect } from './stores/effects/product-type.effect';
+import { productTypeReducer } from './stores/reducers/product-type.reducer';
+import { TransactionHistoryEffect } from './stores/effects/transaction-history.effect';
+import { transactionHistoryReducer } from './stores/reducers/transaction-history.reducer';
 
 registerLocaleData(en);
 
@@ -28,9 +32,15 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     provideStore(),
-    provideEffects([ProductEffect]),
+    provideEffects([
+      ProductEffect,
+      ProductTypeEffect,
+      TransactionHistoryEffect,
+    ]),
     provideStore({
       product: productReducer,
+      productType: productTypeReducer,
+      transactionHistory: transactionHistoryReducer,
     }),
   ],
 };

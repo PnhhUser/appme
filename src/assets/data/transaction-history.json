@@ -1,0 +1,149 @@
+{
+  "data": [
+    {
+      "TransactionId": 1001,
+      "CustomerId": 1,
+      "ProductId": 1,
+      "QuantitySold": 2,
+      "Amount": "178000",
+      "TransactionType": "momo",
+      "Description": "",
+      "TransactionDate": "2024-05-15T10:30:00Z",
+      "CreatedAt": "2024-05-15T10:30:00Z",
+      "UpdatedAt": "2024-05-15T10:30:00Z"
+    },
+    {
+      "TransactionId": 1002,
+      "CustomerId": 1,
+      "ProductId": 2,
+      "QuantitySold": 1,
+      "Amount": "99000",
+      "TransactionType": "momo",
+      "Description": "",
+      "TransactionDate": "2024-05-16T11:00:00Z",
+      "CreatedAt": "2024-05-16T11:00:00Z",
+      "UpdatedAt": "2024-05-16T11:00:00Z"
+    },
+    {
+      "TransactionId": 1003,
+      "CustomerId": 3,
+      "ProductId": 3,
+      "QuantitySold": 3,
+      "Amount": "1178000",
+      "TransactionType": "momo",
+      "Description": "",
+      "TransactionDate": "2024-05-17T12:15:00Z",
+      "CreatedAt": "2024-05-17T12:15:00Z",
+      "UpdatedAt": "2024-05-17T12:15:00Z"
+    },
+    {
+      "TransactionId": 1004,
+      "CustomerId": 2,
+      "ProductId": 1,
+      "QuantitySold": 1,
+      "Amount": "89000",
+      "TransactionType": "cash",
+      "Description": "",
+      "TransactionDate": "2024-05-18T09:20:00Z",
+      "CreatedAt": "2024-05-18T09:20:00Z",
+      "UpdatedAt": "2024-05-18T09:20:00Z"
+    },
+    {
+      "TransactionId": 1005,
+      "CustomerId": 2,
+      "ProductId": 4,
+      "QuantitySold": 2,
+      "Amount": "258000",
+      "TransactionType": "banking",
+      "Description": "",
+      "TransactionDate": "2024-05-19T14:45:00Z",
+      "CreatedAt": "2024-05-19T14:45:00Z",
+      "UpdatedAt": "2024-05-19T14:45:00Z"
+    },
+    {
+      "TransactionId": 1006,
+      "CustomerId": 3,
+      "ProductId": 2,
+      "QuantitySold": 1,
+      "Amount": "99000",
+      "TransactionType": "momo",
+      "Description": "",
+      "TransactionDate": "2024-05-20T16:10:00Z",
+      "CreatedAt": "2024-05-20T16:10:00Z",
+      "UpdatedAt": "2024-05-20T16:10:00Z"
+    },
+    {
+      "TransactionId": 1007,
+      "CustomerId": 1,
+      "ProductId": 5,
+      "QuantitySold": 1,
+      "Amount": "450000",
+      "TransactionType": "banking",
+      "Description": "",
+      "TransactionDate": "2024-05-21T10:05:00Z",
+      "CreatedAt": "2024-05-21T10:05:00Z",
+      "UpdatedAt": "2024-05-21T10:05:00Z"
+    },
+    {
+      "TransactionId": 1008,
+      "CustomerId": 2,
+      "ProductId": 3,
+      "QuantitySold": 2,
+      "Amount": "786000",
+      "TransactionType": "momo",
+      "Description": "",
+      "TransactionDate": "2024-05-22T13:30:00Z",
+      "CreatedAt": "2024-05-22T13:30:00Z",
+      "UpdatedAt": "2024-05-22T13:30:00Z"
+    },
+    {
+      "TransactionId": 1009,
+      "CustomerId": 3,
+      "ProductId": 4,
+      "QuantitySold": 1,
+      "Amount": "129000",
+      "TransactionType": "cash",
+      "Description": "",
+      "TransactionDate": "2024-05-23T15:00:00Z",
+      "CreatedAt": "2024-05-23T15:00:00Z",
+      "UpdatedAt": "2024-05-23T15:00:00Z"
+    },
+    {
+      "TransactionId": 1010,
+      "CustomerId": 1,
+      "ProductId": 2,
+      "QuantitySold": 3,
+      "Amount": "297000",
+      "TransactionType": "momo",
+      "Description": "",
+      "TransactionDate": "2024-05-24T09:40:00Z",
+      "CreatedAt": "2024-05-24T09:40:00Z",
+      "UpdatedAt": "2024-05-24T09:40:00Z"
+    },
+    {
+      "TransactionId": 1011,
+      "CustomerId": 2,
+      "ProductId": 5,
+      "QuantitySold": 2,
+      "Amount": "900000",
+      "TransactionType": "banking",
+      "Description": "",
+      "TransactionDate": "2024-05-25T11:50:00Z",
+      "CreatedAt": "2024-05-25T11:50:00Z",
+      "UpdatedAt": "2024-05-25T11:50:00Z"
+    },
+    {
+      "TransactionId": 1012,
+      "CustomerId": 3,
+      "ProductId": 1,
+      "QuantitySold": 1,
+      "Amount": "89000",
+      "TransactionType": "cash",
+      "Description": "",
+      "TransactionDate": "2024-05-26T17:25:00Z",
+      "CreatedAt": "2024-05-26T17:25:00Z",
+      "UpdatedAt": "2024-05-26T17:25:00Z"
+    }
+  ],
+  "error": null
+}

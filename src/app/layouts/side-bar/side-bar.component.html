@@ -1,18 +1,33 @@
 <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed()" class="sidebar">
-  <!-- Dashboard -->
-  <li nz-menu-item routerLink="/dashboard" [nzMatchRouter]="true">
-    <nz-icon nzType="appstore" />
-    <span>Dashboard</span>
-  </li>
+  <ng-container *ngFor="let item of menuItems">
+    <!-- Menu item (không có children) -->
+    <li
+      *ngIf="!item.children"
+      nz-menu-item
+      [routerLink]="item.route"
+      [nzMatchRouter]="true"
+    >
+      <nz-icon *ngIf="item.icon" [nzType]="item.icon" />
+      <span>{{ item.label }}</span>
+    </li>
 
-  <!-- Data -->
-  <li nz-submenu nzTitle="Data" nzIcon="database" [nzOpen]="true">
-    <ul>
-      <!-- Product -->
-      <li nz-menu-item routerLink="/product" [nzMatchRouter]="true">
-        <nz-icon nzType="product" />
-        <span>Product</span>
-      </li>
-    </ul>
-  </li>
+    <!-- Submenu -->
+    <li
+      *ngIf="item.children"
+      nz-submenu
+      [nzTitle]="item.label"
+      [nzIcon]="item.icon ? item.icon : null"
+    >
+      <ul>
+        <li
+          *ngFor="let child of item.children"
+          nz-menu-item
+          [routerLink]="child.route"
+          [nzMatchRouter]="true"
+        >
+          <span>{{ child.label }}</span>
+        </li>
+      </ul>
+    </li>
+  </ng-container>
 </ul>

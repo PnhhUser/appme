@@ -1,0 +1,29 @@
+<form nz-form nzLayout="vertical" [formGroup]="formAdd" class="modern-form">
+  <!-- Product type name -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="8">Tên loại sản phẩm</nz-form-label>
+    <nz-form-control nzErrorTip="Tên loại sản phẩm không được để trống">
+      <input
+        nz-input
+        nzSize="large"
+        formControlName="productTypeName"
+        placeholder="Nhập tên loại sản phẩm"
+        style="height: 38px"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- Actions -->
+  <div class="form-actions">
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="formAdd.invalid"
+      (click)="save()"
+    >
+      Tạo mới
+    </button>
+
+    <button nz-button (click)="close()">Đóng</button>
+  </div>
+</form>

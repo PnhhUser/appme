@@ -1,0 +1,7 @@
+<app-shared-table
+  [cols]="columns"
+  [rows]="data"
+  [config]="tableConfig"
+  (rowClick)="onRowClick($event)"
+  (sortChange)="onSortChange($event)"
+></app-shared-table>

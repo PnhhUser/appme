@@ -1,16 +1,16 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpService } from '../../core/services/http.service';
-import { IProduct } from './product.interface';
 import { Observable } from 'rxjs';
 import { IResponse } from '../../core/interface/response.interface';
+import { ItransactionHistory } from './transaction-history.interface';
 
 @Injectable({ providedIn: 'root' })
-export class ProductService {
+export class TransactionHistoryService {
   private httpService = inject(HttpService);
 
-  getAll(): Observable<IResponse<IProduct> | null> {
-    return this.httpService.get<IResponse<IProduct>>(
-      'assets/data/product.json'
+  getAll(): Observable<IResponse<ItransactionHistory> | null> {
+    return this.httpService.get<IResponse<ItransactionHistory>>(
+      'assets/data/transaction-history.json'
     );
   }
 }
